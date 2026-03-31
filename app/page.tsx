@@ -68,10 +68,10 @@ export default function Home() {
                 langkah berjalan dengan lancar dan efisien.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                <button className="px-6 sm:px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-400 transition font-semibold text-sm sm:text-base">
+                <button className=" cursor-pointer px-6 sm:px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-400 transition font-semibold text-sm sm:text-base">
                   Mulai Proses Sertifikasi Halal
                 </button>
-                <button className="px-6 sm:px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
+                <button className=" cursor-pointer px-6 sm:px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
                   <svg
                     className="w-5 h-5 text-green-600"
                     fill="currentColor"
@@ -351,7 +351,6 @@ export default function Home() {
                   key={i}
                   name="steps"
                   className="border-b border-gray-200 group"
-                  {...(i === 1 ? { open: true } : {})}
                 >
                   <summary className="flex items-center justify-between py-5 cursor-pointer">
                     <span className="font-bold text-gray-900">
@@ -565,7 +564,6 @@ export default function Home() {
                   key={i}
                   name="faq"
                   className="border-b border-gray-200 group"
-                  {...(i === 1 ? { open: true } : {})}
                 >
                   <summary className="flex items-center justify-between py-6 cursor-pointer [&::-webkit-details-marker]:hidden list-none">
                     <span className="font-bold text-gray-900">{item.q}</span>
@@ -635,10 +633,10 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                  <button className="px-6 sm:px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-700 transition font-semibold text-sm sm:text-base">
+                  <button className=" cursor-pointer px-6 sm:px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-700 transition font-semibold text-sm sm:text-base">
                     Mulai Proses Sertifikasi Halal
                   </button>
-                  <button className="px-6 sm:px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
+                  <button className=" cursor-pointer px-6 sm:px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
                     <svg
                       className="w-5 h-5 text-green-600"
                       fill="currentColor"
@@ -664,12 +662,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
               <div>
-                <Image
-                  src={logoImg}
-                  alt="urushalal"
-                  width={180}
-                  height={60}
-                />
+                <Image src={logoImg} alt="urushalal" width={180} height={60} />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-6">Navigasi</h3>

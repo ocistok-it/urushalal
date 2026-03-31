@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 const items = [
   {
@@ -40,13 +40,18 @@ const items = [
   },
 ];
 
+// Triple the items for seamless infinite scroll
+const loopedItems = [...items, ...items, ...items];
+
 export default function PendampinganCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(0);
+  const isPaused = useRef(false);
+  const isScrolling = useRef(false);
 
   const getCardWidth = useCallback(() => {
     if (!scrollRef.current) return 0;
-    return scrollRef.current.scrollWidth / items.length;
+    return scrollRef.current.scrollWidth / loopedItems.length;
   }, []);
 
   const updateCurrent = useCallback(() => {
@@ -54,12 +59,59 @@ export default function PendampinganCarousel() {
     const cardWidth = getCardWidth();
     if (cardWidth === 0) return;
     const rawIdx = Math.round(scrollRef.current.scrollLeft / cardWidth);
-    setCurrent(Math.min(rawIdx, items.length - 1));
+    setCurrent(((rawIdx % items.length) + items.length) % items.length);
   }, [getCardWidth]);
+
+  // After a smooth scroll finishes, silently jump to the equivalent middle-set position
+  const resetToMiddle = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = getCardWidth();
+    if (cardWidth === 0) return;
+    const oneSetWidth = cardWidth * items.length;
+    const scrollLeft = container.scrollLeft;
+
+    // If we've scrolled into the first or third copy, jump to the equivalent spot in the middle copy
+    if (scrollLeft < oneSetWidth * 0.75 || scrollLeft >= oneSetWidth * 2.25) {
+      const offset = ((scrollLeft % oneSetWidth) + oneSetWidth) % oneSetWidth;
+      container.scrollLeft = oneSetWidth + offset;
+    }
+  }, [getCardWidth]);
+
+  // Initialize scroll to middle set
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = container.scrollWidth / loopedItems.length;
+    container.scrollLeft = cardWidth * items.length;
+  }, []);
+
+  // Listen for scrollend to reset position and update index
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const onScroll = () => {
+      updateCurrent();
+    };
+
+    const onScrollEnd = () => {
+      isScrolling.current = false;
+      resetToMiddle();
+    };
+
+    container.addEventListener("scroll", onScroll, { passive: true });
+    container.addEventListener("scrollend", onScrollEnd, { passive: true });
+    return () => {
+      container.removeEventListener("scroll", onScroll);
+      container.removeEventListener("scrollend", onScrollEnd);
+    };
+  }, [updateCurrent, resetToMiddle]);
 
   const scrollTo = useCallback(
     (direction: "prev" | "next") => {
-      if (!scrollRef.current) return;
+      if (!scrollRef.current || isScrolling.current) return;
+      isScrolling.current = true;
       const container = scrollRef.current;
       const cardWidth = getCardWidth();
       const target =
@@ -71,8 +123,22 @@ export default function PendampinganCarousel() {
     [getCardWidth],
   );
 
+  // Auto-scroll
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (!isPaused.current) {
+  //       scrollTo("next");
+  //     }
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [scrollTo]);
+
   return (
-    <div className="flex flex-col md:flex-row md:justify-between gap-4">
+    <div
+      className="flex flex-col md:flex-row md:justify-between gap-4"
+      onMouseEnter={() => (isPaused.current = true)}
+      onMouseLeave={() => (isPaused.current = false)}
+    >
       <div className="flex flex-row md:flex-col md:w-1/4 justify-between items-center md:items-start pb-0 md:pb-4">
         <div className="flex items-end gap-6 mb-0 md:mb-8">
           <div className="flex items-baseline">
@@ -128,11 +194,10 @@ export default function PendampinganCarousel() {
       </div>
       <div
         ref={scrollRef}
-        onScroll={updateCurrent}
-        className="flex gap-4 sm:gap-10 overflow-x-auto mx-auto snap-x snap-mandatory pb-4 px-2 sm:px-4 w-full md:w-11/12"
+        className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 px-2 sm:px-4 w-full md:w-11/12"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {items.map((item, i) => (
+        {loopedItems.map((item, i) => (
           <div
             key={i}
             className="flex flex-col justify-around shrink-0 w-[80vw] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] min-w-0 bg-white rounded-2xl overflow-hidden shadow-sm"
@@ -148,7 +213,7 @@ export default function PendampinganCarousel() {
             <div className="px-6 pb-6">
               <Image
                 className="rounded-2xl"
-                alt={`Gambar Layanan ${i + 1}`}
+                alt={`Gambar Layanan ${(i % items.length) + 1}`}
                 src={item.src}
                 width={400}
                 height={400}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Navbar from "./components/Navbar";
 import PendampinganCarousel from "./components/PendampinganCarousel";
 import ProdukCarousel from "./components/ProdukCarousel";
 import BackToTop from "./components/BackToTop";
@@ -7,73 +8,39 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-8 left-0 right-0 max-w-7xl mx-auto bg-white shadow-sm z-50 rounded-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Image alt="logo" src="/logo.png" width={120} height={40} />
-            <div className="hidden md:flex items-center gap-8">
-              <a
-                href="#tentang"
-                className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
-              >
-                Tentang Sertifikasi
-              </a>
-              <a
-                href="#layanan"
-                className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
-              >
-                Layanan
-              </a>
-              <a
-                href="#industri"
-                className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
-              >
-                Industri
-              </a>
-              <a
-                href="#tahapan"
-                className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
-              >
-                Tahapan Sertifikasi
-              </a>
-              <a
-                href="#produk"
-                className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
-              >
-                Kategori Produk
-              </a>
-            </div>
-            <button className="px-6 py-2 bg-[#045754] text-white rounded-full hover:bg-teal-700 transition text-sm font-medium">
-              Mulai Proses
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
-      <section className="relative bg-[#A0DAB6] overflow-hidden rounded-2xl m-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl text-white tracking-tight mb-6">
+      <section className="relative overflow-hidden rounded-2xl mx-2 sm:mx-4 mt-2 sm:mt-4 md:h-[80vh]">
+        <Image
+          src="/jumbotron_web.png"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="relative z-10 max-w-fit mx-0 w-max px-4 sm:px-6 lg:px-8 h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 h-full gap-8 md:gap-12 items-center">
+            <div className="pt-24 sm:pt-28 md:pt-0 h-full flex flex-col justify-center">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6">
                 Permudah Proses{" "}
                 <span className="font-semibold bg-auto bg-[#3b82f6_70%] leading-normal">
                   Sertifikasi Halal
                 </span>{" "}
                 untuk Bisnis Anda
               </h1>
-              <p className="text-teal-100 text-lg mb-8 leading-relaxed">
+              <p className="text-teal-100 text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
                 Urushalal.id membantu perusahaan Anda mendapatkan sertifikasi
                 halal dengan proses yang terstruktur, profesional, dan sesuai
                 regulasi BPJPH, LPH, dan MUI. Mulai dari konsultasi, penyusunan
                 dokumen, hingga pendampingan audit — kami pastikan setiap
                 langkah berjalan dengan lancar dan efisien.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <button className="px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-400 transition font-semibold">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                <button className="px-6 sm:px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-400 transition font-semibold text-sm sm:text-base">
                   Mulai Proses Sertifikasi Halal
                 </button>
-                <button className="px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center gap-2">
+                <button className="px-6 sm:px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
                   <svg
                     className="w-5 h-5 text-green-600"
                     fill="currentColor"
@@ -85,25 +52,75 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <Image
-                alt="Gambar Wanita dengan Sertifikat"
-                src="/jumbotron.webp"
-                height={708}
-                width={708}
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+
+            <div className="h-full w-full flex items-end">
+              {/* Parent container is relative */}
+              <div className="relative w-full max-w-md md:max-w-none">
+                <Image
+                  alt="Gambar Wanita dengan Sertifikat"
+                  src="/jumbotron.webp"
+                  height={708}
+                  width={708}
+                  priority
+                  className="w-full"
+                  sizes="(max-width: 768px) 100vw, 100vw"
+                />
+
+                {/* Add absolute, bottom-0, left-0, z-index, and pointer-events-none here */}
+              </div>
             </div>
           </div>
+          <svg
+            className="absolute -bottom-1/12 -right-1/12 z-10 pointer-events-none"
+            width="1281"
+            height="431"
+            viewBox="0 0 1281 431"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_f_180_2022)">
+              <ellipse
+                cx="922.828"
+                cy="614.656"
+                rx="729.372"
+                ry="402.84"
+                transform="rotate(-9.25841 922.828 614.656)"
+                fill="#4FBA78"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_f_180_2022"
+                x="0"
+                y="0"
+                width="1845.66"
+                height="1229.31"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB" /* Note: React uses camelCase for this */
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />{" "}
+                {/* camelCase */}
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="BackgroundImageFix"
+                  result="shape"
+                />
+                <feGaussianBlur
+                  stdDeviation="100"
+                  result="effect1_foregroundBlur_180_2022"
+                />
+              </filter>
+            </defs>
+          </svg>
         </div>
       </section>
 
       {/* Why Halal Certification Section */}
-      <section id="tentang" className="py-20 bg-white">
+      <section id="tentang" className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative overflow-hidden rounded-2xl h-full w-full">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="relative overflow-hidden rounded-2xl h-64 sm:h-80 md:h-full w-full">
               <Image
                 className="object-cover"
                 src="/sertifikasi.webp"
@@ -154,9 +171,9 @@ export default function Home() {
       </section>
 
       {/* Pendampingan Section */}
-      <section id="layanan" className="py-20 bg-gray-50">
+      <section id="layanan" className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 mb-12">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-6 mb-8 md:mb-12">
             <div>
               <span className="inline-flex items-center gap-2 text-teal-700 text-xs font-semibold tracking-wider mb-4">
                 <span className="w-3 h-3 bg-teal-700 rounded-sm" />
@@ -178,9 +195,9 @@ export default function Home() {
       </section>
 
       {/* Siapa yang Kami Bantu */}
-      <section id="industri" className="py-20 bg-[#d4edda]">
+      <section id="industri" className="py-12 md:py-20 bg-[#d4edda]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <span className="inline-flex items-center justify-center gap-2 text-teal-700 text-xs font-semibold tracking-wider mb-4">
               <span className="w-3 h-3 bg-teal-700 rounded-sm" />
               INDUSTRI YANG KAMI LAYANI
@@ -194,7 +211,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
                 title: "Produsen / Manufacturer",
@@ -240,9 +257,9 @@ export default function Home() {
       </section>
 
       {/* Proses Sertifikasi Halal */}
-      <section id="tahapan" className="py-20 bg-gray-50">
+      <section id="tahapan" className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <span className="inline-flex items-center justify-center gap-2 text-teal-700 text-xs font-semibold tracking-wider mb-4">
               <span className="w-3 h-3 bg-teal-700 rounded-sm" />
               TAHAPAN SERTIFIKASI
@@ -255,14 +272,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <div className="relative overflow-hidden rounded-2xl">
               <Image
                 src="/18.webp"
                 alt="Proses Sertifikasi Halal"
                 width={600}
                 height={500}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-cover"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
@@ -302,6 +319,7 @@ export default function Home() {
               ].map((item, i) => (
                 <details
                   key={i}
+                  name="steps"
                   className="border-b border-gray-200 group"
                   {...(i === 1 ? { open: true } : {})}
                 >
@@ -336,40 +354,36 @@ export default function Home() {
       </section>
 
       {/* Produk yang Memerlukan Sertifikasi Halal */}
-      <section
-        id="produk"
-        className="py-20 bg-linear-to-r from-[#0a3d3a] to-[#0d5956] rounded-2xl m-4"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="flex flex-col justify-between h-full">
-              <div>
-                <span className="inline-flex items-center gap-2 text-teal-300 text-xs font-semibold tracking-wider mb-6">
-                  <span className="w-3 h-3 bg-teal-400 rounded-sm" />
-                  KATEGORI PRODUK
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                  Produk yang Memerlukan Sertifikasi Halal
-                </h2>
-                <p className="text-white/80 text-base mb-8 leading-relaxed">
-                  Beberapa kategori produk yang memerlukan atau berpotensi
-                  memerlukan sertifikasi halal antara lain:
-                </p>
-              </div>
-              <p className="text-white/50 text-sm mt-12">
-                *Seiring perkembangan regulasi, semakin banyak kategori produk
-                yang akan diwajibkan memiliki sertifikasi halal.
+
+      <section id="produk" className="grid grid-cols-1 md:grid-cols-2">
+        <div className="w-full bg-[#0a3d3a] px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-16 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
+          <div className="flex flex-col justify-between h-full">
+            <div>
+              <span className="inline-flex items-center gap-2 text-teal-300 text-xs font-semibold tracking-wider mb-6">
+                <span className="w-3 h-3 bg-teal-400 rounded-sm" />
+                KATEGORI PRODUK
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Produk yang Memerlukan Sertifikasi Halal
+              </h2>
+              <p className="text-white/80 text-base mb-8 leading-relaxed">
+                Beberapa kategori produk yang memerlukan atau berpotensi
+                memerlukan sertifikasi halal antara lain:
               </p>
             </div>
-            <ProdukCarousel />
+            <p className="text-white/50 text-sm mt-12">
+              *Seiring perkembangan regulasi, semakin banyak kategori produk
+              yang akan diwajibkan memiliki sertifikasi halal.
+            </p>
           </div>
         </div>
+        <ProdukCarousel />
       </section>
 
       {/* Mengapa Memilih Kami */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {/* Header cell */}
             <div className="flex flex-col justify-center">
               <span className="inline-flex items-center gap-2 text-teal-700 text-xs font-semibold tracking-wider mb-4">
@@ -438,7 +452,7 @@ export default function Home() {
       </section>
 
       {/* Brands Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-semibold tracking-wider mb-4">
@@ -473,7 +487,7 @@ export default function Home() {
               ].map((src, i) => (
                 <div
                   key={`${setIndex}-${i}`}
-                  className="flex-shrink-0 h-16 w-40 flex items-center justify-center"
+                  className="shrink-0 h-16 w-40 flex items-center justify-center"
                 >
                   <Image
                     src={src}
@@ -490,9 +504,9 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             <div>
               <span className="inline-flex items-center gap-2 text-teal-700 text-xs font-semibold tracking-wider mb-4">
                 <span className="w-3 h-3 bg-teal-700 rounded-sm" />
@@ -519,6 +533,7 @@ export default function Home() {
               ].map((item, i) => (
                 <details
                   key={i}
+                  name="faq"
                   className="border-b border-gray-200 group"
                   {...(i === 1 ? { open: true } : {})}
                 >
@@ -543,18 +558,26 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-12">
+      <section className="py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl">
             <Image
               src="/CTA.png"
               alt="CTA Background"
               fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 1280px"
+              className="object-cover hidden md:block"
+              sizes="1280px"
               loading="lazy"
             />
-            <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center p-10 md:p-16">
+            <Image
+              src="/CTA-mobile.png"
+              alt="CTA Background"
+              fill
+              className="object-cover md:hidden"
+              sizes="100vw"
+              loading="lazy"
+            />
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center p-6 sm:p-10 md:p-16 mb-72 md:mb-0">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   Mulai Proses Sertifikasi Halal Anda Sekarang
@@ -579,11 +602,11 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className="flex flex-wrap gap-4">
-                  <button className="px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-700 transition font-semibold">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                  <button className="px-6 sm:px-8 py-3 bg-[#045754] text-white rounded-full hover:bg-teal-700 transition font-semibold text-sm sm:text-base">
                     Mulai Proses Sertifikasi Halal
                   </button>
-                  <button className="px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center gap-2">
+                  <button className="px-6 sm:px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
                     <svg
                       className="w-5 h-5 text-green-600"
                       fill="currentColor"
@@ -607,7 +630,7 @@ export default function Home() {
       <footer>
         <div className="bg-[#F0F9F4] py-16 border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
               <div>
                 <Image
                   src="/logo.png"

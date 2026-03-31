@@ -172,11 +172,11 @@ export default function ProdukCarousel() {
       onMouseLeave={() => (isPaused.current = false)}
     >
       {/* Slide counter */}
-      <div className="flex items-baseline justify-end mb-4">
+      <div className="absolute top-10 right-10 z-10 flex items-baseline justify-end mb-4">
         <span className="text-4xl font-light text-white leading-none tabular-nums">
           {String(current + 1).padStart(2, "0")}
         </span>
-        <span className="text-lg text-white/50 ml-0.5">
+        <span className="text-lg text-[#4FBA78] ml-0.5">
           /{String(items.length).padStart(2, "0")}
         </span>
       </div>
@@ -184,7 +184,7 @@ export default function ProdukCarousel() {
       {/* Carousel */}
       <div
         ref={scrollRef}
-        className="flex gap-0 overflow-x-auto snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
+        className="h-full flex gap-0 overflow-x-auto snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -193,7 +193,7 @@ export default function ProdukCarousel() {
       >
         {loopedItems.map((item, i) => (
           <div key={i} className="shrink-0 w-full snap-center relative">
-            <div className="relative aspect-4/3 rounded-xl overflow-hidden">
+            <div className="relative aspect-4/3 overflow-hidden">
               <Image
                 src={item.src}
                 alt={item.title}
@@ -214,7 +214,7 @@ export default function ProdukCarousel() {
       </div>
 
       {/* Progress bar */}
-      <div className="flex gap-2 mt-4">
+      <div className="absolute z-10 bottom-2 left-2 right-2 flex gap-2 mt-4">
         {items.map((_, i) => (
           <button
             key={i}

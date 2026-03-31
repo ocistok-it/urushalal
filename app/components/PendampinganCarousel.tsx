@@ -2,41 +2,50 @@
 
 import { useRef, useState, useCallback } from "react";
 import Image from "next/image";
+
+import carousel0 from "@/public/carousel/0.webp";
+import carousel1 from "@/public/carousel/1.webp";
+import carousel2 from "@/public/carousel/2.webp";
+import carousel3 from "@/public/carousel/3.webp";
+import carousel4 from "@/public/carousel/4.webp";
+import carousel5 from "@/public/carousel/5.webp";
+import carousel6 from "@/public/carousel/6.webp";
+
 const items = [
   {
     title: "Konsultasi sertifikasi halal",
     desc: "Memberikan konsultasi awal untuk memahami persyaratan, alur proses, dan kesiapan bisnis dalam sertifikasi halal.",
-    src: "/carousel/0.webp",
+    src: carousel0,
   },
   {
     title: "Persiapan dan review dokumen halal",
     desc: "Membantu menyiapkan dan meninjau dokumen agar sesuai dengan persyaratan sertifikasi halal.",
-    src: "/carousel/1.webp",
+    src: carousel1,
   },
   {
     title: "Pendampingan implementasi Produk Halal (SJPH)",
     desc: "Pendampingan implementasi SJPH agar proses produksi dan operasional memenuhi standar halal.",
-    src: "/carousel/2.webp",
+    src: carousel2,
   },
   {
     title: "Persiapan audit halal",
     desc: "Mempersiapkan perusahaan menghadapi audit halal dengan memastikan sistem dan dokumen telah sesuai.",
-    src: "/carousel/3.webp",
+    src: carousel3,
   },
   {
     title: "Koordinasi dengan lembaga sertifikasi halal",
     desc: "Membantu koordinasi dengan lembaga sertifikasi agar proses pengajuan berjalan lancar.",
-    src: "/carousel/4.webp",
+    src: carousel4,
   },
   {
     title: "Pendampingan proses sertifikasi hingga selesai",
     desc: "Pendampingan setiap tahapan sertifikasi halal hingga sertifikat resmi diterbitkan.",
-    src: "/carousel/5.webp",
+    src: carousel5,
   },
   {
     title: "Bantuan perpanjangan sertifikasi halal",
     desc: "Membantu proses perpanjangan sertifikasi halal agar bisnis tetap memenuhi standar halal.",
-    src: "/carousel/6.webp",
+    src: carousel6,
   },
 ];
 

@@ -1,32 +1,39 @@
 "use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
-const items = [
+import produk0 from "@/public/carousel2/0.webp";
+import produk1 from "@/public/carousel2/1.webp";
+import produk2 from "@/public/carousel2/2.webp";
+import produk3 from "@/public/carousel2/3.webp";
+import produk4 from "@/public/carousel2/4.webp";
+import produk5 from "@/public/carousel2/5.webp";
+
+const items: { title: string; src: StaticImageData }[] = [
   {
     title: "Makanan dan minuman kemasan",
-    src: "/carousel2/0.webp",
+    src: produk0,
   },
   {
     title: "Kosmetik dan produk perawatan tubuh",
-    src: "/carousel2/1.webp",
+    src: produk1,
   },
   {
     title: "Obat-obatan dan suplemen kesehatan",
-    src: "/carousel2/2.webp",
+    src: produk2,
   },
   {
     title: "Bahan baku dan rempah-rempah",
-    src: "/carousel2/3.webp",
+    src: produk3,
   },
   {
     title: "Produk daging dan olahan",
-    src: "/carousel2/4.webp",
+    src: produk4,
   },
   {
     title: "Makanan siap saji dan katering",
-    src: "/carousel2/5.webp",
+    src: produk5,
   },
 ];
 

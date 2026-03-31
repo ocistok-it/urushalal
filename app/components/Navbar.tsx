@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import logoImg from "@/public/logo.png";
 
 const navLinks = [
   { href: "#tentang", label: "Tentang Sertifikasi" },
@@ -20,7 +21,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-14 md:h-16">
           <Image
             alt="logo"
-            src="/logo.png"
+            src={logoImg}
             width={100}
             height={33}
             className="md:w-30"

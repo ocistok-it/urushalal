@@ -4,6 +4,36 @@ import PendampinganCarousel from "./components/PendampinganCarousel";
 import ProdukCarousel from "./components/ProdukCarousel";
 import BackToTop from "./components/BackToTop";
 
+import jumbotronWeb from "@/public/jumbotron_web.png";
+import jumbotron from "@/public/jumbotron.webp";
+import sertifikasi from "@/public/sertifikasi.webp";
+import prosesSertifikasi from "@/public/18.webp";
+import ctaDesktop from "@/public/CTA.png";
+import ctaMobile from "@/public/CTA-mobile.png";
+import logoImg from "@/public/logo.png";
+
+import iconManufacturer from "@/public/icons/manufacturer.svg";
+import iconImportir from "@/public/icons/importir.svg";
+import iconCompany from "@/public/icons/company.svg";
+import iconCulinary from "@/public/icons/culinary.svg";
+
+import iconK5 from "@/public/icons/k5.svg";
+import iconK4 from "@/public/icons/k4.svg";
+import iconK3 from "@/public/icons/k3.svg";
+import iconK2 from "@/public/icons/k2.svg";
+import iconK1 from "@/public/icons/k1.svg";
+
+import client0 from "@/public/clients/Client.png";
+import client1 from "@/public/clients/Client-1.png";
+import client2 from "@/public/clients/Client-2.png";
+import client3 from "@/public/clients/Client-3.png";
+import client4 from "@/public/clients/Client-4.png";
+import client5 from "@/public/clients/Client-5.png";
+import client6 from "@/public/clients/Client-6.png";
+import client7 from "@/public/clients/Client-7.png";
+import client8 from "@/public/clients/Client-8.png";
+import client9 from "@/public/clients/Client-9.png";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
@@ -13,11 +43,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden rounded-2xl mx-2 sm:mx-4 mt-2 sm:mt-4 md:h-[80vh]">
         <Image
-          src="/jumbotron_web.png"
+          src={jumbotronWeb}
           alt=""
           fill
           className="object-cover"
           priority
+          placeholder="blur"
         />
         <div className="relative z-10 max-w-fit mx-0 w-max px-4 sm:px-6 lg:px-8 h-full">
           <div className="grid grid-cols-1 md:grid-cols-2 h-full gap-8 md:gap-12 items-center">
@@ -58,12 +89,11 @@ export default function Home() {
               <div className="relative w-full max-w-md md:max-w-none">
                 <Image
                   alt="Gambar Wanita dengan Sertifikat"
-                  src="/jumbotron.webp"
-                  height={708}
-                  width={708}
+                  src={jumbotron}
                   priority
                   className="w-full"
                   sizes="(max-width: 768px) 100vw, 100vw"
+                  placeholder="blur"
                 />
 
                 {/* Add absolute, bottom-0, left-0, z-index, and pointer-events-none here */}
@@ -123,10 +153,11 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-2xl h-64 sm:h-80 md:h-full w-full">
               <Image
                 className="object-cover"
-                src="/sertifikasi.webp"
+                src={sertifikasi}
                 alt="Sertifikasi Halal"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
+                placeholder="blur"
               />
             </div>
             <div>
@@ -216,22 +247,22 @@ export default function Home() {
               {
                 title: "Produsen / Manufacturer",
                 desc: "Perusahaan makanan, minuman, kosmetik, farmasi, dan produk konsumen lainnya.",
-                icon: "/icons/icon supported industries - producent or manufacturer.svg",
+                icon: iconManufacturer,
               },
               {
                 title: "Importir dan Distributor",
                 desc: "Perusahaan yang mengimpor produk ke Indonesia yang memerlukan sertifikasi halal.",
-                icon: "/icons/icon supported industries - importir & distributor.svg",
+                icon: iconImportir,
               },
               {
                 title: "Perusahaan Internasional",
                 desc: "Manufaktur luar negeri yang ingin memasuki pasar Indonesia.",
-                icon: "/icons/icon supported industries - multinational company.svg",
+                icon: iconCompany,
               },
               {
                 title: "Bisnis Kuliner",
                 desc: "Restoran, catering, dan industri makanan yang ingin memperoleh sertifikasi halal.",
-                icon: "/icons/icon supported industries - culinary.svg",
+                icon: iconCulinary,
               },
             ].map((item, i) => (
               <div
@@ -275,13 +306,12 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
             <div className="relative overflow-hidden rounded-2xl">
               <Image
-                src="/18.webp"
+                src={prosesSertifikasi}
                 alt="Proses Sertifikasi Halal"
-                width={600}
-                height={500}
                 className="w-full h-auto object-cover"
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                placeholder="blur"
               />
             </div>
             <div className="space-y-0">
@@ -401,28 +431,28 @@ export default function Home() {
             {/* Cards */}
             {[
               {
-                icon: "/icons/icon keunggulan kami - Regulasi.svg",
+                icon: iconK5,
                 title: "Memahami regulasi halal di Indonesia",
                 desc: "Memahami regulasi halal terbaru di Indonesia agar proses sertifikasi berjalan sesuai ketentuan.",
               },
               {
-                icon: "/icons/icon keunggulan kami - Pendampingan.svg",
+                icon: iconK4,
                 title: "Pendampingan proses secara terstruktur",
                 desc: "Pendampingan setiap tahapan sertifikasi secara terstruktur agar proses berjalan lebih jelas dan terarah.",
               },
               {
-                icon: "/icons/icon keunggulan kami - Dokumentasi.svg",
+                icon: iconK3,
                 title: "Dukungan dokumentasi dan sistem halal",
                 desc: "Membantu penyusunan dokumentasi dan sistem halal agar sesuai dengan standar sertifikasi yang berlaku.",
               },
               {
-                icon: "/icons/icon keunggulan kami - Pengalaman.svg",
+                icon: iconK2,
                 title:
                   "Pengalaman bekerja dengan perusahaan lokal dan internasional",
                 desc: "Berpengalaman mendampingi berbagai perusahaan lokal dan internasional dalam proses sertifikasi halal.",
               },
               {
-                icon: "/icons/icon keunggulan kami - Transparansi & Efisiensi.svg",
+                icon: iconK1,
                 title: "Proses transparan dan efisien",
                 desc: "Menjalankan proses sertifikasi secara transparan dan efisien untuk meminimalkan hambatan dan waktu.",
               },
@@ -474,16 +504,16 @@ export default function Home() {
           <div className="flex animate-marquee items-center gap-16 w-max">
             {[...Array(2)].map((_, setIndex) =>
               [
-                "/clients/Client.png",
-                "/clients/Client-1.png",
-                "/clients/Client-2.png",
-                "/clients/Client-3.png",
-                "/clients/Client-4.png",
-                "/clients/Client-5.png",
-                "/clients/Client-6.png",
-                "/clients/Client-7.png",
-                "/clients/Client-8.png",
-                "/clients/Client-9.png",
+                client0,
+                client1,
+                client2,
+                client3,
+                client4,
+                client5,
+                client6,
+                client7,
+                client8,
+                client9,
               ].map((src, i) => (
                 <div
                   key={`${setIndex}-${i}`}
@@ -562,20 +592,22 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl">
             <Image
-              src="/CTA.png"
+              src={ctaDesktop}
               alt="CTA Background"
               fill
               className="object-cover hidden md:block"
               sizes="1280px"
               loading="lazy"
+              placeholder="blur"
             />
             <Image
-              src="/CTA-mobile.png"
+              src={ctaMobile}
               alt="CTA Background"
               fill
               className="object-cover md:hidden"
               sizes="100vw"
               loading="lazy"
+              placeholder="blur"
             />
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center p-6 sm:p-10 md:p-16 mb-72 md:mb-0">
               <div>
@@ -633,7 +665,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
               <div>
                 <Image
-                  src="/logo.png"
+                  src={logoImg}
                   alt="urushalal"
                   width={180}
                   height={60}

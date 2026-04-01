@@ -132,15 +132,15 @@ export default function PendampinganCarousel() {
     [getCardWidth],
   );
 
-  // Auto-scroll
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (!isPaused.current) {
-  //       scrollTo("next");
-  //     }
-  //   }, 2000);
-  //   return () => clearInterval(interval);
-  // }, [scrollTo]);
+  // Auto - scroll;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isPaused.current) {
+        scrollTo("next");
+      }
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [scrollTo]);
 
   return (
     <div

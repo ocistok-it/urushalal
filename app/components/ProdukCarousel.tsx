@@ -179,11 +179,11 @@ export default function ProdukCarousel() {
       onMouseLeave={() => (isPaused.current = false)}
     >
       {/* Slide counter */}
-      <div className="absolute top-10 right-10 z-10 flex items-baseline justify-end mb-4">
-        <span className="text-4xl font-light text-white leading-none tabular-nums">
+      <div className="absolute bottom-10 left-6 md:bottom-10 md:left-10 z-10 flex items-baseline justify-end mb-4">
+        <span className="text-2xl font-light text-white leading-none tabular-nums">
           {String(current + 1).padStart(2, "0")}
         </span>
-        <span className="text-lg text-[#4FBA78] ml-0.5">
+        <span className="text-2xl text-teal-400 ml-0.5">
           /{String(items.length).padStart(2, "0")}
         </span>
       </div>
@@ -211,7 +211,7 @@ export default function ProdukCarousel() {
               />
               {/* Label overlay at bottom */}
               <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-6 pt-12">
-                <h3 className="text-white text-xl font-semibold">
+                <h3 className="text-white text-base md:text-xl font-semibold">
                   {item.title}
                 </h3>
               </div>

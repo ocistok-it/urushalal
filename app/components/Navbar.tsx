@@ -12,6 +12,13 @@ const navLinks = [
   { href: "#produk", label: "Kategori Produk" },
 ];
 
+const phoneNumber = "6281219478493";
+const message =
+  "Halo saya berminat untuk urus sertifikasi halal di urushalal.id";
+
+const encodedMessage = encodeURIComponent(message);
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -38,9 +45,14 @@ export default function Navbar() {
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <button className="hidden sm:block px-6 py-2 bg-[#045754] text-white rounded-full hover:bg-teal-700 transition text-sm font-medium">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:block px-6 py-2 bg-teal-800 text-white rounded-full hover:bg-teal-700 transition text-sm font-medium"
+            >
               Mulai Proses
-            </button>
+            </a>
             {/* Mobile hamburger */}
             <button
               className="md:hidden p-2 text-gray-600"
@@ -82,7 +94,7 @@ export default function Navbar() {
       </div>
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-gray-100 px-4 pb-4">
+        <div className="md:hidden border-gray-100 px-4 pb-4 text-center">
           <div className="flex flex-col gap-1 pt-2">
             {navLinks.map((link) => (
               <a
@@ -94,9 +106,14 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <button className="sm:hidden mt-2 px-6 py-2 bg-[#045754] text-white rounded-full hover:bg-teal-700 transition text-sm font-medium w-full">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sm:hidden mt-2 px-6 py-2 bg-teal-800 text-white rounded-full hover:bg-teal-700 transition text-sm font-medium w-full"
+            >
               Mulai Proses
-            </button>
+            </a>
           </div>
         </div>
       )}

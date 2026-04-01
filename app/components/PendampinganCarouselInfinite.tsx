@@ -138,7 +138,7 @@ export default function PendampinganCarousel() {
   //     if (!isPaused.current) {
   //       scrollTo("next");
   //     }
-  //   }, 1000);
+  //   }, 2000);
   //   return () => clearInterval(interval);
   // }, [scrollTo]);
 
@@ -209,7 +209,7 @@ export default function PendampinganCarousel() {
         {loopedItems.map((item, i) => (
           <div
             key={i}
-            className="flex flex-col justify-around shrink-0 w-[80vw] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] min-w-0 bg-white rounded-2xl overflow-hidden shadow-sm"
+            className="flex flex-col justify-center max-h-96 md:max-h-none md:justify-around shrink-0 sm:w-[calc(50%-12px)] w-full min-w-0 bg-background rounded-2xl overflow-hidden py-4 md:py-0"
           >
             <div className="p-6 pb-4">
               <h3 className="font-bold text-gray-900 text-lg mb-3">

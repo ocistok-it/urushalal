@@ -180,7 +180,7 @@ export default function ProdukCarousel() {
     >
       {/* Slide counter */}
       <div className="absolute bottom-10 left-6 md:bottom-10 md:left-10 z-10 flex items-baseline justify-end mb-4">
-        <span className="text-2xl font-light text-white leading-none tabular-nums">
+        <span className="font-bold text-2xl md:text-5xl text-white leading-none tabular-nums">
           {String(current + 1).padStart(2, "0")}
         </span>
         <span className="text-2xl text-teal-400 ml-0.5">
@@ -210,7 +210,7 @@ export default function ProdukCarousel() {
                 draggable={false}
               />
               {/* Label overlay at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-6 pt-12">
+              <div className="absolute bottom-0 left-0 md:left-5 right-0 bg-linear-to-t from-black/60 to-transparent p-6 pt-12">
                 <h3 className="text-white text-base md:text-xl font-semibold">
                   {item.title}
                 </h3>

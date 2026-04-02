@@ -3,3 +3,4 @@
 .husky
 Dockerfile.*
 Dockerfile*
+README*

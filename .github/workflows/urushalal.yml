@@ -1,206 +1,24 @@
-name: Publish Docker urushalal WEBSITE
+name: "CI/CD Pipeline urushalal FE"
 
 on:
   push:
     branches:
-      - 'development'
-      - 'main'
-      - 'nearlive'
+      - development
+      - nearlive
+      - main
 
 
 jobs:
-  Build-to-urushalal-V2:
-    runs-on: ubuntu-latest
-    if: github.ref_name == 'main'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ocistok
-          password: 5be4703b-5540-43f8-9862-ae677fee445b
-
-      # - name: Import ENV S3
-      #   uses: hashicorp/vault-action@v2
-      #   with:
-      #     url: https://vaultx.ocistok.com
-      #     method: approle
-      #     tlsSkipVerify: true
-      #     roleId: ${{ secrets.ROLEID }}
-      #     secretId: ${{ secrets.SECRETID  }}
-      #     secrets: |
-      #       dev/data/s3-ocistok *          
-
-
-      - name: Build and push Docker urushalal
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          no-cache: true
-          tags: ocistok/urushalal:production
-          file: ./Dockerfile   
-
-      - name: deploy to K8S PROD
-        run: |
-          curl https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNDU2MzQ0NTcwMDg5NDIxMyJ9.kCz4l7Y4qmQT0tr0RmkNA6Cvpi-t0zsX2r0uFmdjVoC5_Oc9Omeje3GO7A0FSdCCazyvWdarTZHKgI8ui0D23Bag-kK7mffpmrZx4tH0H9xEKbltDVmlMDELQdCDrwvl96KerS2OXZcOvQWHsKSXnLEBXYeYP49peSntQq4YlnE
-
-
-## BOT DT
-      - name: Notify dingtalk Deploy
-        uses: leafney/dingtalk-action@v1
-        if: always()
-        env:
-          DINGTALK_ACCESS_TOKEN: ${{ secrets.WEBHOOK_DINGTALK }}
-        with:
-          msgtype: text
-          # notify_when: 'success'
-          status: ${{ job.status }}
-          text: |
-            🐉 urushalal production ${{ job.status }} 🐉
-
-            User: ${{ github.actor }} 
-            created commit: ${{ github.ref_name }}
-            Repository: ${{ github.repository }}
-            Github Action URL : 
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            Commit message: 
-            ${{ github.event.head_commit.message }}
-            
-
-          at_mobiles: '+62-8886198345,+62-89668578211,+62-87877265170,+62-81357155067,+62-81392990231'
-          title: Ocistok Desktop Ocistok Service Notification
-
-
-  Build-to-urushalal-DEV:
-    runs-on: ubuntu-latest
+  deploy-development:
+    name: "Build urushalal FE development "
     if: github.ref_name == 'development'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ocistok
-          password: 5be4703b-5540-43f8-9862-ae677fee445b
-
-
-
-      - name: Build and push Docker urushalal
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          no-cache: true
-          tags: ocistok/urushalal:development
-          file: ./Dockerfile
-
-
-      - name: deploy to K8S dev urushalal
-        run: |
-          curl https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNDU2MzQ0NTcwMDg5NDIxMyJ9.kCz4l7Y4qmQT0tr0RmkNA6Cvpi-t0zsX2r0uFmdjVoC5_Oc9Omeje3GO7A0FSdCCazyvWdarTZHKgI8ui0D23Bag-kK7mffpmrZx4tH0H9xEKbltDVmlMDELQdCDrwvl96KerS2OXZcOvQWHsKSXnLEBXYeYP49peSntQq4YlnE
-
-
-
-## BOT DT
-      - name: Notify dingtalk Deploy
-        uses: leafney/dingtalk-action@v1
-        if: always()
-        env:
-          DINGTALK_ACCESS_TOKEN: ${{ secrets.WEBHOOK_DINGTALK }}
-        with:
-          msgtype: text
-          # notify_when: 'success'
-          status: ${{ job.status }}
-          text: |
-            🔮 urushalal V2 ${{ job.status }} 🔮
-
-            
-            User: ${{ github.actor }} 
-            created commit: ${{ github.ref_name }}
-            Repository: ${{ github.repository }}
-            Github Action URL : 
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            Commit message: 
-            ${{ github.event.head_commit.message }}
-
-
-            url : https://urushalal.com
-            
-
-          at_mobiles: '+62-8886198345,+62-89668578211,+62-87877265170,+62-81357155067,+62-81392990231'
-          title: urushalal FE Service Notification
-
-
-  Build-to-staging:
-    runs-on: ubuntu-latest
-    if: github.ref_name == 'nearlive'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ocistok
-          password: 5be4703b-5540-43f8-9862-ae677fee445b
-
-      - name: Import ENV S3
-        uses: hashicorp/vault-action@v2
-        with:
-          url: https://vaultx.ocistok.com
-          method: approle
-          tlsSkipVerify: true
-          roleId: ${{ secrets.ROLEID }}
-          secretId: ${{ secrets.SECRETID  }}
-          secrets: |
-            dev/data/s3-ocistok *          
-
-
-      - name: Build and push Docker urushalal
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          no-cache: true
-          tags: ocistok/urushalal:staging
-          file: ./Dockerfile   
-
-      - name: deploy to K8S staging
-        run: |
-          curl https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNDU2MzQ0NTcwMDg5NDIxMyJ9.kCz4l7Y4qmQT0tr0RmkNA6Cvpi-t0zsX2r0uFmdjVoC5_Oc9Omeje3GO7A0FSdCCazyvWdarTZHKgI8ui0D23Bag-kK7mffpmrZx4tH0H9xEKbltDVmlMDELQdCDrwvl96KerS2OXZcOvQWHsKSXnLEBXYeYP49peSntQq4YlnE
-
-
-## BOT DT
-      - name: Notify dingtalk Deploy
-        uses: leafney/dingtalk-action@v1
-        if: always()
-        env:
-          DINGTALK_ACCESS_TOKEN: ${{ secrets.WEBHOOK_DINGTALK }}
-        with:
-          msgtype: text
-          # notify_when: 'success'
-          status: ${{ job.status }}
-          text: |
-            🚵 urushalal staging ${{ job.status }} 🚵
-
-            User: ${{ github.actor }} 
-            created commit: ${{ github.ref_name }}
-            Repository: ${{ github.repository }}
-            Github Action URL : 
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            Commit message: 
-            ${{ github.event.head_commit.message }}
-
-
-          at_mobiles: '+62-8886198345,+62-89668578211,+62-87877265170,+62-81392990231'
-          title: Ocistok Desktop Ocistok Service Notification          
+    uses: ./.github/workflows/template.yml
+    with:
+      deployment_name: urushalal
+      # vault_path: 'dev/data/lomiles-dashboard-customer-v2'
+      docker_tags: 'ocistok/urushalal:development' 
+      deploy_server: 'https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNDU2MzQ0NTcwMDg5NDIxMyJ9.kCz4l7Y4qmQT0tr0RmkNA6Cvpi-t0zsX2r0uFmdjVoC5_Oc9Omeje3GO7A0FSdCCazyvWdarTZHKgI8ui0D23Bag-kK7mffpmrZx4tH0H9xEKbltDVmlMDELQdCDrwvl96KerS2OXZcOvQWHsKSXnLEBXYeYP49peSntQq4YlnE'
+    secrets:
+      # ROLEID: ${{ secrets.ROLEID }}
+      # SECRETID: ${{ secrets.SECRETID }}
+      WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}

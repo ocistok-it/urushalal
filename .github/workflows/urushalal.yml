@@ -12,7 +12,7 @@ jobs:
   deploy-development:
     name: "Build urushalal FE development "
     if: github.ref_name == 'development'
-    uses: ./.github/workflows/template.yaml
+    uses: ./.github/workflows/template.yml
     with:
       deployment_name: urushalal
       # vault_path: 'dev/data/lomiles-dashboard-customer-v2'

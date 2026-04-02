@@ -8,8 +8,8 @@ import jumbotronWeb from "@/public/jumbotron_web.png";
 import jumbotron from "@/public/jumbotron.webp";
 import sertifikasi from "@/public/sertifikasi.webp";
 import prosesSertifikasi from "@/public/18.webp";
-import ctaDesktop from "@/public/CTA.png";
-import ctaMobile from "@/public/CTA-mobile.png";
+import ctaDesktop from "@/public/CTA.webp";
+import ctaMobile from "@/public/CTA-mobile.webp";
 import logoImg from "@/public/logo.png";
 
 import iconManufacturer from "@/public/icons/manufacturer.svg";
@@ -49,7 +49,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden rounded-2xl mx-2 sm:mx-4 mt-2 sm:mt-4 md:h-[80vh]">
+      <section className="relative overflow-hidden rounded-2xl mx-2 sm:mx-4 mt-2 sm:mt-4 md:h-[96vh]">
         <Image
           src={jumbotronWeb}
           alt=""
@@ -58,9 +58,9 @@ export default function Home() {
           priority
           placeholder="blur"
         />
-        <div className="relative z-10 max-w-fit mx-0 w-max px-4 sm:px-6 lg:px-8 h-full mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 h-full gap-8 md:gap-12 items-center">
-            <div className="pt-24 sm:pt-28 md:pt-0 h-full flex flex-col justify-center">
+        <div className="relative z-10 max-w-fit mx-0 w-max px-4 sm:px-6 lg:px-8 h-full md:mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 h-full gap-0 md:gap-12 items-center">
+            <div className="pt-16 sm:pt-16 md:pt-0 h-full flex flex-col justify-center">
               <h1 className="text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6">
                 Permudah Proses <br />
                 <span className="font-semibold bg-auto bg-[#3b82f6_70%] leading-normal">
@@ -103,7 +103,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="h-full w-full flex items-end">
+            <div className="h-full w-full flex items-start md:items-end">
               {/* Parent container is relative */}
               <div className="relative w-full max-w-md md:max-w-none">
                 <Image
@@ -167,7 +167,7 @@ export default function Home() {
 
       {/* Why Halal Certification Section */}
       <section id="tentang" className="py-12 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative overflow-hidden rounded-2xl h-64 sm:h-80 md:h-full w-full">
               <Image
@@ -428,7 +428,7 @@ export default function Home() {
           <div className="flex flex-col justify-between h-full">
             <div>
               <span className="inline-flex items-center gap-2 text-teal-400 text-xs font-semibold tracking-wider mb-6">
-                <span className="w-3 h-3 bg-teal-400 rounded-sm" />
+                <span className="md:w-1.5 md:h-1.5 w-1 h-1 bg-teal-400" />
                 KATEGORI PRODUK
               </span>
               <h2 className="text-2xl md:text-4xl text-white mb-6">
@@ -527,8 +527,9 @@ export default function Home() {
       <section className="py-12 md:py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1 bg-teal-50 text-teal-700 rounded-full text-xs font-semibold tracking-wider mb-4">
-              &#9632; KLIEN KAMI
+            <span className="inline-flex items-center gap-2 text-teal-800 text-xs font-semibold tracking-wider mb-6">
+              <span className="md:w-1.5 md:h-1.5 w-1 h-1 bg-teal-400" />
+              KLIEN KAMI
             </span>
             <h2 className="text-2xl md:text-4xl text-gray-900 mb-4">
               Dipercaya oleh Berbagai Brand dan Perusahaan

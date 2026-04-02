@@ -210,7 +210,7 @@ export default function ProdukCarousel() {
                 draggable={false}
               />
               {/* Label overlay at bottom */}
-              <div className="absolute bottom-0 left-0 md:left-5 right-0 bg-linear-to-t from-black/60 to-transparent p-6 pt-12">
+              <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-6 pt-12">
                 <h3 className="text-white text-base md:text-xl font-semibold">
                   {item.title}
                 </h3>

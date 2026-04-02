@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Navbar from "./components/Navbar";
-import PendampinganCarousel from "./components/PendampinganCarousel";
 import ProdukCarousel from "./components/ProdukCarousel";
 import BackToTop from "./components/BackToTop";
+import PendampinganCarouselInfinite from "./components/PendampinganCarouselInfinite";
 
 import jumbotronWeb from "@/public/jumbotron_web.png";
 import jumbotron from "@/public/jumbotron.webp";
@@ -33,7 +33,6 @@ import client6 from "@/public/clients/Client-6.png";
 import client7 from "@/public/clients/Client-7.png";
 import client8 from "@/public/clients/Client-8.png";
 import client9 from "@/public/clients/Client-9.png";
-import PendampinganCarouselInfinite from "./components/PendampinganCarouselInfinite";
 
 const phoneNumber = "6281219478493";
 const message =
@@ -63,9 +62,11 @@ export default function Home() {
             <div className="pt-16 sm:pt-16 md:pt-0 h-full flex flex-col justify-center">
               <h1 className="text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6">
                 Permudah Proses <br />
-                <span className="font-semibold bg-auto bg-[#3b82f6_70%] leading-normal">
-                  Sertifikasi Halal <br />
+                <span className="font-semibold bg-auto bg-[#3b82f6_70%] leading-normal relative">
+                  <span className="absolute -z-1 bottom-1.5 md:bottom-3 left-0 w-full h-1 md:h-2 bg-teal-400" />
+                  Sertifikasi Halal
                 </span>{" "}
+                <br />
                 untuk Bisnis Anda
               </h1>
               <p className="text-white text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
@@ -167,9 +168,9 @@ export default function Home() {
 
       {/* Why Halal Certification Section */}
       <section id="tentang" className="py-12 md:py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-0">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="relative overflow-hidden rounded-2xl h-64 sm:h-80 md:h-full w-full">
+            <div className="relative overflow-hidden rounded-2xl h-80 sm:h-80 md:h-full w-full">
               <Image
                 className="object-fit"
                 src={sertifikasi}

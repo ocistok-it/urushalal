@@ -58,8 +58,8 @@ export default function Home() {
           placeholder="blur"
         />
         <div className="relative z-10 max-w-fit mx-0 w-max px-4 sm:px-6 lg:px-8 h-full md:mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 h-full gap-0 md:gap-12 items-center">
-            <div className="pt-16 sm:pt-16 md:pt-0 h-full flex flex-col justify-center">
+          <div className="flex flex-col md:flex-row h-full space-y-0 gap-0 md:gap-12 items-center">
+            <div className="pt-16 sm:pt-16 md:pt-0 h-full flex flex-col justify-center w-full md:w-1/2">
               <h1 className="text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4 md:mb-6">
                 Permudah Proses <br />
                 <span className="font-semibold bg-auto bg-[#3b82f6_70%] leading-normal relative">
@@ -104,16 +104,15 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="h-full w-full flex items-start md:items-end">
+            <div className="h-full w-full md:w-1/2 flex items-start md:items-end">
               {/* Parent container is relative */}
               <div className="relative w-full max-w-md md:max-w-none">
                 <Image
                   alt="Gambar Wanita dengan Sertifikat"
                   src={jumbotron}
                   priority
-                  className="w-full"
+                  className="w-full h-full object-cover"
                   sizes="(max-width: 768px) 100vw, 100vw"
-                  placeholder="blur"
                 />
 
                 {/* Add absolute, bottom-0, left-0, z-index, and pointer-events-none here */}
@@ -121,7 +120,7 @@ export default function Home() {
             </div>
           </div>
           <svg
-            className="absolute -bottom-1/12 -right-1/12 z-10 pointer-events-none"
+            className="absolute -bottom-2/12 md:-bottom-1/12 -right-1/12 z-10 pointer-events-none"
             width="1281"
             height="431"
             viewBox="0 0 1281 431"

@@ -3,21 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import logoImg from "@/public/logo.png";
+import { whatsappUrl } from "@/app/lib/constants";
+import Link from "next/link";
 
 const navLinks = [
-  { href: "#tentang", label: "Tentang Sertifikasi" },
-  { href: "#layanan", label: "Layanan" },
-  { href: "#industri", label: "Industri" },
-  { href: "#tahapan", label: "Tahapan Sertifikasi" },
-  { href: "#produk", label: "Kategori Produk" },
+  { type: "internal", href: "#tentang", label: "Tentang Sertifikasi" },
+  { type: "internal", href: "#layanan", label: "Layanan" },
+  { type: "internal", href: "#industri", label: "Industri" },
+  { type: "internal", href: "#tahapan", label: "Tahapan Sertifikasi" },
+  { type: "internal", href: "#produk", label: "Kategori Produk" },
+  { type: "external", href: "/blog", label: "Blog" },
 ];
-
-const phoneNumber = "6281219478493";
-const message =
-  "Halo saya berminat untuk urus sertifikasi halal di urushalal.id";
-
-const encodedMessage = encodeURIComponent(message);
-const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -96,16 +92,26 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-gray-100 px-4 pb-4 text-center">
           <div className="flex flex-col gap-1 pt-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-gray-600 hover:text-gray-900 text-sm py-2 px-2 rounded-lg hover:bg-gray-50 transition"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.type === "internal" ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="text-gray-600 hover:text-gray-900 text-sm py-2 px-2 rounded-lg hover:bg-gray-50 transition"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
             <a
               href={whatsappUrl}
               target="_blank"

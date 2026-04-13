@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Navbar from "./components/Navbar";
 import ProdukCarousel from "./components/ProdukCarousel";
 import BackToTop from "./components/BackToTop";
 import PendampinganCarouselInfinite from "./components/PendampinganCarouselInfinite";
@@ -8,9 +7,10 @@ import jumbotronWeb from "@/public/jumbotron_web.png";
 import jumbotron from "@/public/jumbotron.webp";
 import sertifikasi from "@/public/sertifikasi.webp";
 import prosesSertifikasi from "@/public/18.webp";
-import ctaDesktop from "@/public/CTA.webp";
-import ctaMobile from "@/public/CTA-mobile.webp";
+
 import logoImg from "@/public/logo.png";
+
+import { whatsappUrl } from "./lib/constants";
 
 import iconManufacturer from "@/public/icons/manufacturer.svg";
 import iconImportir from "@/public/icons/importir.svg";
@@ -33,20 +33,12 @@ import client6 from "@/public/clients/Client-6.png";
 import client7 from "@/public/clients/Client-7.png";
 import client8 from "@/public/clients/Client-8.png";
 import client9 from "@/public/clients/Client-9.png";
-
-const phoneNumber = "6281219478493";
-const message =
-  "Halo saya berminat untuk urus sertifikasi halal di urushalal.id";
-
-const encodedMessage = encodeURIComponent(message);
-const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+import Link from "next/link";
+import CTA from "./components/CTA";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
-      {/* Navigation */}
-      <Navbar />
-
       {/* Hero Section */}
       <section className="relative overflow-hidden rounded-2xl mx-2 sm:mx-4 mt-2 sm:mt-4 md:h-[96vh]">
         <Image
@@ -632,80 +624,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-8 md:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl">
-            <Image
-              src={ctaDesktop}
-              alt="CTA Background"
-              fill
-              className="object-cover hidden md:block"
-              sizes="1280px"
-              loading="lazy"
-              placeholder="blur"
-            />
-            <Image
-              src={ctaMobile}
-              alt="CTA Background"
-              fill
-              className="object-cover md:hidden"
-              sizes="100vw"
-              loading="lazy"
-              placeholder="blur"
-            />
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center p-6 sm:p-10 md:p-16 mb-72 md:mb-0">
-              <div>
-                <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-                  Mulai Proses Sertifikasi Halal Anda Sekarang
-                </h2>
-                <p className="text-white/70 mb-6 leading-relaxed text-sm">
-                  Tim kami siap membantu Anda memahami proses sertifikasi halal
-                  dan memastikan bisnis Anda memenuhi regulasi yang berlaku di
-                  Indonesia.
-                </p>
-                <ul className="space-y-2 mb-8">
-                  {[
-                    "Konsultasi awal gratis",
-                    "Pendampingan profesional",
-                    "Proses yang jelas dan terstruktur",
-                  ].map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-2 text-white/90 text-sm"
-                    >
-                      <span className="text-white">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                  <button className=" cursor-pointer px-6 sm:px-8 py-3 bg-teal-800 text-white rounded-full hover:bg-teal-700 transition font-semibold text-sm sm:text-base">
-                    Mulai Proses Sertifikasi Halal
-                  </button>
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className=" cursor-pointer px-6 sm:px-8 py-3 bg-white text-gray-800 rounded-full hover:bg-gray-100 transition font-semibold flex items-center justify-center gap-2 text-sm sm:text-base"
-                  >
-                    <svg
-                      className="w-5 h-5 text-green-600"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                    Konsultasi Gratis
-                  </a>
-                </div>
-              </div>
-              <div>
-                {/* Right side reserved for background image content */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTA />
 
       {/* Footer */}
       <footer>
@@ -743,6 +662,11 @@ export default function Home() {
                       Kategori Produk
                     </a>
                   </li>
+                  <li>
+                    <Link href="/blog" className="hover:text-gray-900">
+                      Blog
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div>
@@ -763,7 +687,7 @@ export default function Home() {
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                   </svg>
                   <span>
-                    <strong>Whatsapp:</strong> +62 812 1947 8493
+                    <strong>Whatsapp:</strong> +62 813 1515 951
                   </span>
                 </a>
                 <h3 className="font-bold text-gray-900 mb-4">Ikuti Kami</h3>

@@ -47,4 +47,4 @@ jobs:
     secrets:
       # ROLEID: ${{ secrets.ROLEID }}
       # SECRETID: ${{ secrets.SECRETID }}
-      WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}         
+      WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}

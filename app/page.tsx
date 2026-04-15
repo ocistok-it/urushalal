@@ -1,7 +1,8 @@
+"use client";
 import Image from "next/image";
-import ProdukCarousel from "./components/ProdukCarousel";
-import BackToTop from "./components/BackToTop";
-import PendampinganCarouselInfinite from "./components/PendampinganCarouselInfinite";
+import ProdukCarousel from "./components/ui/ProdukCarousel";
+import BackToTop from "./components/organisms/BackToTop";
+import PendampinganCarouselInfinite from "./components/ui/PendampinganCarouselInfinite";
 
 import jumbotronWeb from "@/public/jumbotron_web.png";
 import jumbotron from "@/public/jumbotron.webp";
@@ -34,7 +35,7 @@ import client7 from "@/public/clients/Client-7.png";
 import client8 from "@/public/clients/Client-8.png";
 import client9 from "@/public/clients/Client-9.png";
 import Link from "next/link";
-import CTA from "./components/CTA";
+import CTA from "@/components/ui/CTA";
 
 export default function Home() {
   return (

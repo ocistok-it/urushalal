@@ -1,111 +1,94 @@
-import Image from "next/image";
-import Link from "next/link";
-import CTA from "@/components/CTA";
+"use client";
 
-import img0 from "@/public/carousel/0.webp";
-import img1 from "@/public/carousel/1.webp";
-import img2 from "@/public/carousel/2.webp";
-import img3 from "@/public/carousel/3.webp";
-import img4 from "@/public/carousel/4.webp";
-import img5 from "@/public/carousel/5.webp";
-import img6 from "@/public/carousel/6.webp";
+import { useState } from "react";
+import CTA from "@/app/components/ui/CTA";
+import useSWR from "swr";
+import { BlogResponse } from "@/app/types";
+import Pagination from "@/components/molecules/Pagination";
+import BlogErrorState from "./_components/BlogErrorState";
+import ArticleCardSkeleton from "./_components/ArticleCardSkeleton";
+import Card from "@/components/molecules/Card";
+import BackToTop from "../components/organisms/BackToTop";
 
-const articles = [
-  {
-    slug: "mengapa-sertifikasi-halal-penting",
-    image: img0,
-    author: "Welno Hedi",
-    date: "25 Februari 2026",
-    title: "Mengapa Sertifikasi Halal Penting untuk Bisnis di Indonesia?",
-  },
-  {
-    slug: "langkah-langkah-mendapatkan-sertifikasi-halal",
-    image: img1,
-    author: "Welno Hedi",
-    date: "25 Februari 2026",
-    title: "Langkah-Langkah Mendapatkan Sertifikasi Halal dengan Mudah",
-  },
-  {
-    slug: "5-kesalahan-umum-sertifikasi-halal",
-    image: img2,
-    author: "Welno Hedi",
-    date: "25 Februari 2026",
-    title: "5 Kesalahan Umum Saat Mengurus Sertifikasi Halal",
-  },
-  {
-    slug: "studi-kasus-umkm-sertifikasi-halal",
-    image: img3,
-    author: "Welno Hedi",
-    date: "25 Februari 2026",
-    title: "Studi Kasus: UMKM Berhasil Mendapatkan Sertifikasi Halal",
-  },
-  {
-    slug: "update-regulasi-sertifikasi-halal",
-    image: img4,
-    author: "Welno Hedi",
-    date: "25 Februari 2026",
-    title: "Update Regulasi Sertifikasi Halal Terbaru di Indonesia",
-  },
-  {
-    slug: "pendampingan-implementasi-sjph",
-    image: img5,
-    author: "Welno Hedi",
-    date: "25 Februari 2026",
-    title:
-      "Pendampingan Implementasi Sistem Jaminan Produk Halal (SJPH): Kunci Keberhasilan Sertifikasi",
-  },
-  {
-    slug: "proses-perpanjangan-sertifikat-halal",
-    image: img6,
-    author: "Welno Hedi",
-    date: "25 Februari 2026",
-    title: "Proses Perpanjangan Sertifikat Halal: Panduan Lengkap",
-  },
-];
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 const Page = () => {
+  const [page, setPage] = useState(1);
+
+  const { data, isLoading, error } = useSWR<BlogResponse>(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=5`,
+    fetcher,
+  );
+
+  const articles = data?.data?.articles ?? [];
+  const totalPages = data?.data?.total_pages ?? 1;
+
+  if (error) {
+    return <BlogErrorState />;
+  }
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <ArticleCardSkeleton key={i} />
+        ))}
+      </div>
+    );
+  }
+
+  if (articles.length === 0)
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <p className="text-gray-400 text-lg">Belum ada artikel.</p>
+      </div>
+    );
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header spacing for fixed navbar */}
       <div className="pt-24 md:pt-32 pb-12 px-4 max-w-7xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">
           Blog
         </h1>
       </div>
 
-      {/* Article Grid */}
       <section className="px-4 max-w-7xl mx-auto pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0">
           {articles.map((article) => (
-            <Link
-              key={article.slug}
-              href={`/blog/${article.slug}`}
-              className="group block border-b border-gray-200 pb-8 mb-8"
-            >
-              <div className="relative w-full aspect-4/3 overflow-hidden rounded-xl mb-4">
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <p className="text-sm mb-2">
-                <span className="text-teal-600 font-medium">
-                  {article.author}
-                </span>
-                <span className="text-gray-400 mx-2">|</span>
-                <span className="text-gray-400">{article.date}</span>
-              </p>
-              <h2 className="text-base font-semibold text-gray-900 leading-snug group-hover:text-teal-700 transition-colors">
-                {article.title}
-              </h2>
-            </Link>
+            <Card
+              key={article.id}
+              href={`/blog/${article.handle}`}
+              imageSrc={article.image.src}
+              imageAlt={article.image.alt || article.title}
+              title={article.title}
+              meta={
+                <>
+                  <span className="text-teal-600 font-medium">
+                    {article.author}
+                  </span>
+                  <span className="text-gray-400 mx-2">|</span>
+                  <span className="text-gray-400">
+                    {new Date(article.created_at).toLocaleDateString("id-ID", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </span>
+                </>
+              }
+            />
           ))}
         </div>
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
       </section>
 
       <CTA />
+
+      <BackToTop />
     </div>
   );
 };

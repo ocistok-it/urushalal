@@ -2,7 +2,7 @@ import React from "react";
 import ctaDesktop from "@/public/CTA.webp";
 import ctaMobile from "@/public/CTA-mobile.webp";
 import Image from "next/image";
-import { whatsappUrl } from "../lib/constants";
+import { whatsappUrl } from "../../lib/constants";
 
 const CTA = () => {
   return (

@@ -38,7 +38,7 @@ jobs:
 
   Build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.ref_name == 'development'
+    # if: github.ref_name == 'development'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -91,8 +91,6 @@ jobs:
             Commit message: 
             ${{ github.event.head_commit.message }}
 
-
-            url : https://urushalal.com
             
 
           at_mobiles: '+62-8886198345,+62-89668578211,+62-87877265170,+62-81357155067,+62-81392990231'

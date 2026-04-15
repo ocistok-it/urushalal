@@ -17,8 +17,21 @@ jobs:
       deployment_name: urushalal
       # vault_path: 'dev/data/lomiles-dashboard-customer-v2'
       docker_tags: 'ocistok/urushalal:development' 
-      deploy_server: 'https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNDU2MzQ0NTcwMDg5NDIxMyJ9.kCz4l7Y4qmQT0tr0RmkNA6Cvpi-t0zsX2r0uFmdjVoC5_Oc9Omeje3GO7A0FSdCCazyvWdarTZHKgI8ui0D23Bag-kK7mffpmrZx4tH0H9xEKbltDVmlMDELQdCDrwvl96KerS2OXZcOvQWHsKSXnLEBXYeYP49peSntQq4YlnE'
+      deploy_server: 'https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNjczNzM1NjcxODg3NDExNSJ9.fJE2WP1JnzupRLM6rEbTzoN6YIuoV1ov6NR3t8AEFr6HvEjezxuRzVk6UQD8jOKYNkDDvXg-ywfi3zDMx6EwP10kKXnbhkTPOlIc1K16b1kXt4v9IRH9BA9IShPC_xro6iDbonKloi-0MabRC6pe-gQn79eKhkHwN6pG_fv8PY0'
     secrets:
       # ROLEID: ${{ secrets.ROLEID }}
       # SECRETID: ${{ secrets.SECRETID }}
       WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}
+
+  deploy-production:
+    name: "Build urushalal FE production "
+    if: github.ref_name == 'main'
+    uses: ./.github/workflows/template.yml
+    with:
+      deployment_name: urushalal
+      docker_tags: 'ocistok/urushalal:production' 
+      deploy_server: 'https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNDU2MzQ0NTcwMDg5NDIxMyJ9.kCz4l7Y4qmQT0tr0RmkNA6Cvpi-t0zsX2r0uFmdjVoC5_Oc9Omeje3GO7A0FSdCCazyvWdarTZHKgI8ui0D23Bag-kK7mffpmrZx4tH0H9xEKbltDVmlMDELQdCDrwvl96KerS2OXZcOvQWHsKSXnLEBXYeYP49peSntQq4YlnE'
+    secrets:
+      # ROLEID: ${{ secrets.ROLEID }}
+      # SECRETID: ${{ secrets.SECRETID }}
+      WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}      

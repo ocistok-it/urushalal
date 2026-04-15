@@ -34,4 +34,17 @@ jobs:
     secrets:
       # ROLEID: ${{ secrets.ROLEID }}
       # SECRETID: ${{ secrets.SECRETID }}
-      WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}      
+      WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}
+
+  deploy-staging:
+    name: "Build urushalal FE staging "
+    if: github.ref_name == 'nearlive'
+    uses: ./.github/workflows/template.yml
+    with:
+      deployment_name: urushalal
+      docker_tags: 'ocistok/urushalal:staging' 
+      deploy_server: 'https://cs.console.aliyun.com/hook/trigger?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVySWQiOiJjMTc1MGY4MDA0ZmI5NGYyYzk2NGY3MTg0OGY4OWU4YzQiLCJpZCI6IjEyNjczNzM1NjcxODg3NDExNSJ9.fJE2WP1JnzupRLM6rEbTzoN6YIuoV1ov6NR3t8AEFr6HvEjezxuRzVk6UQD8jOKYNkDDvXg-ywfi3zDMx6EwP10kKXnbhkTPOlIc1K16b1kXt4v9IRH9BA9IShPC_xro6iDbonKloi-0MabRC6pe-gQn79eKhkHwN6pG_fv8PY0'
+    secrets:
+      # ROLEID: ${{ secrets.ROLEID }}
+      # SECRETID: ${{ secrets.SECRETID }}
+      WEBHOOK_DINGTALK: ${{ secrets.WEBHOOK_DINGTALK }}         

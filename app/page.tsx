@@ -159,7 +159,8 @@ export default function Home() {
       </section>
 
       {/* Why Halal Certification Section */}
-      <section id="tentang" className="py-12 md:py-20 bg-background">
+      <div className="mb-10" id="tentang"/>
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-0">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative overflow-hidden rounded-2xl h-80 sm:h-80 md:h-full w-full">
@@ -231,8 +232,8 @@ export default function Home() {
       </section>
 
       {/* Pendampingan Section */}
+      <div className="mb-10" id="layanan"/>
       <section
-        id="layanan"
         className="py-12 md:py-20 bg-white rounded-2xl mx-2 my-8 sm:mx-4"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -258,7 +259,9 @@ export default function Home() {
       </section>
 
       {/* Siapa yang Kami Bantu */}
-      <section id="industri" className="py-12 md:py-20 bg-teal-50">
+      <div className="mb-10 lg:mb-40" id="industri"/>
+
+      <section className="py-12 md:py-20 bg-teal-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <span className="inline-flex items-center justify-center gap-2 text-teal-700 text-xs font-semibold tracking-wider mb-4">
@@ -320,7 +323,8 @@ export default function Home() {
       </section>
 
       {/* Proses Sertifikasi Halal */}
-      <section id="tahapan" className="py-12 md:py-20 bg-background">
+      <div className="mb-10" id="tahapan"/>
+      <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <span className="inline-flex items-center justify-center gap-2 text-teal-700 text-xs font-semibold tracking-wider mb-4">
@@ -415,8 +419,8 @@ export default function Home() {
       </section>
 
       {/* Produk yang Memerlukan Sertifikasi Halal */}
-
-      <section id="produk" className="grid grid-cols-1 md:grid-cols-2">
+      <div className="mb-10 lg:mb-30" id="produk"/>
+      <section className="grid grid-cols-1 md:grid-cols-2">
         <div className="w-full bg-teal-900 px-6 py-10 sm:px-10 sm:py-12 md:px-12 md:py-16 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
           <div className="flex flex-col justify-between h-full">
             <div>

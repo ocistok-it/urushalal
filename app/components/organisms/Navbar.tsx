@@ -7,12 +7,12 @@ import { whatsappUrl } from "@/app/lib/constants";
 import Link from "next/link";
 
 const navLinks = [
-  { type: "internal", href: "#tentang", label: "Tentang Sertifikasi" },
-  { type: "internal", href: "#layanan", label: "Layanan" },
-  { type: "internal", href: "#industri", label: "Industri" },
-  { type: "internal", href: "#tahapan", label: "Tahapan Sertifikasi" },
-  { type: "internal", href: "#produk", label: "Kategori Produk" },
-  { type: "external", href: "/blog", label: "Blog" },
+  { type: "anchor", href: "#tentang", label: "Tentang Sertifikasi" },
+  { type: "anchor", href: "#layanan", label: "Layanan" },
+  { type: "anchor", href: "#industri", label: "Industri" },
+  { type: "anchor", href: "#tahapan", label: "Tahapan Sertifikasi" },
+  { type: "anchor", href: "#produk", label: "Kategori Produk" },
+  { type: "page", href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {
@@ -33,14 +33,15 @@ export default function Navbar() {
           </Link>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+                <Link
+                  key={link.href}
+                  href={link.type === "anchor" ? `/${link.href}` : link.href}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+            ))
+            }
           </div>
           <div className="flex items-center gap-3">
             <a
@@ -95,24 +96,13 @@ export default function Navbar() {
         <div className="md:hidden border-gray-100 px-4 pb-4 text-center">
           <div className="flex flex-col gap-1 pt-2">
             {navLinks.map((link) =>
-              link.type === "internal" ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-gray-600 hover:text-gray-900 text-sm py-2 px-2 rounded-lg hover:bg-gray-50 transition"
-                >
-                  {link.label}
-                </a>
-              ) : (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={link.type === "anchor" ? `/${link.href}` : link.href}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
                 </Link>
-              ),
             )}
             <a
               href={whatsappUrl}

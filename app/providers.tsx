@@ -14,7 +14,16 @@ export function Providers({ children }: { children: React.ReactNode }) {
             console.error(`[SWR Error] on ${key}:`, error.message);
           }
         },
-      }}
+        onErrorRetry(error: ApiError, key, config, revalidate, { retryCount }) {
+            if (error.status === 401 || error.status === 404) {    
+            return;
+          }
+          if (retryCount >= 3) {
+            return;
+          }
+           setTimeout(() => revalidate({ retryCount }), 5000);
+        }
+        }}
     >
       {children}
     </SWRConfig>

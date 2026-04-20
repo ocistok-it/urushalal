@@ -1,5 +1,5 @@
 const BlogErrorState = () => (
-  <div className="flex flex-col items-center justify-center py-20 text-center">
+  <div className="min-h-screen flex flex-col items-center justify-center py-20 text-center">
     <svg
       className="w-16 h-16 text-gray-300 mb-4"
       fill="none"

@@ -9,15 +9,13 @@ import BlogErrorState from "./_components/BlogErrorState";
 import ArticleCardSkeleton from "./_components/ArticleCardSkeleton";
 import Card from "@/components/molecules/Card";
 import BackToTop from "../components/organisms/BackToTop";
-
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+import { ApiError } from "../lib/fetcher";
 
 const Page = () => {
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, error } = useSWR<BlogResponse>(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=5`,
-    fetcher,
+  const { data, isLoading, error } = useSWR<BlogResponse, ApiError>(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=5`
   );
 
   const articles = data?.data?.articles ?? [];

@@ -10,8 +10,7 @@ import ArticleDetailSkeleton from "./_components/ArticleDetailSkeleton";
 import BlogErrorState from "@/app/blog/_components/BlogErrorState";
 import Card from "@/components/molecules/Card";
 import BackToTop from "@/app/components/organisms/BackToTop";
-
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+import { ApiError } from "@/app/lib/fetcher";
 
 function formatDate(isoString: string) {
   return new Date(isoString).toLocaleDateString("id-ID", {
@@ -28,9 +27,8 @@ interface Props {
 const Page = ({ params }: Props) => {
   const { handle } = use(params);
 
-  const { data, isLoading, error } = useSWR<ArticleDetailResponse>(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/${handle}`,
-    fetcher,
+  const { data, isLoading, error } = useSWR<ArticleDetailResponse, ApiError>(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/${handle}`
   );
 
   const article = data?.data;

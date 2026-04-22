@@ -8,10 +8,10 @@ import { BlogResponse } from '@/app/types';
 import BlogErrorState from './_components/BlogErrorState';
 import ArticleCardSkeleton from './_components/ArticleCardSkeleton';
 import Card from '@/components/molecules/Card';
-import BackToTop from '../components/organisms/BackToTop';
-import { ApiError } from '../lib/fetcher';
-import Footer from '../components/organisms/Footer';
-import Pagination from '../components/molecules/Pagination';
+import BackToTop from '@/components/organisms/BackToTop';
+import { ApiError } from '@/app/lib/fetcher';
+import Footer from '@/components/organisms/Footer';
+import Pagination from '@/components/molecules/Pagination';
 
 const LIMIT_OPTIONS = [5, 10, 20, 100];
 

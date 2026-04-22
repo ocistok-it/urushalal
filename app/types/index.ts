@@ -32,7 +32,7 @@ export interface Article {
 export interface BlogResponse {
   data: {
     articles: Article[];
-    total_pages: number;
+    total_articles: number;
   };
   message: string;
   status: number;

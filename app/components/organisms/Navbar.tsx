@@ -3,21 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import logoImg from "@/public/logo.png";
+import { whatsappUrl } from "@/app/lib/constants";
+import Link from "next/link";
 
 const navLinks = [
-  { href: "#tentang", label: "Tentang Sertifikasi" },
-  { href: "#layanan", label: "Layanan" },
-  { href: "#industri", label: "Industri" },
-  { href: "#tahapan", label: "Tahapan Sertifikasi" },
-  { href: "#produk", label: "Kategori Produk" },
+  { type: "anchor", href: "#tentang", label: "Tentang Sertifikasi" },
+  { type: "anchor", href: "#layanan", label: "Layanan" },
+  { type: "anchor", href: "#industri", label: "Industri" },
+  { type: "anchor", href: "#tahapan", label: "Tahapan Sertifikasi" },
+  { type: "anchor", href: "#produk", label: "Kategori Produk" },
+  // { type: "page", href: "/blog", label: "Blog" },
 ];
-
-const phoneNumber = "6281219478493";
-const message =
-  "Halo saya berminat untuk urus sertifikasi halal di urushalal.id";
-
-const encodedMessage = encodeURIComponent(message);
-const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -26,23 +22,26 @@ export default function Navbar() {
     <nav className="fixed top-4 md:top-8 left-4 right-4 md:left-0 md:right-0 max-w-7xl md:mx-auto bg-white shadow-sm z-50 rounded-2xl md:rounded-full">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-10 md:h-16">
-          <Image
-            alt="logo"
-            src={logoImg}
-            width={100}
-            height={33}
-            className="md:w-30"
-          />
+          <Link href="/">
+            <Image
+              alt="logo"
+              src={logoImg}
+              width={100}
+              height={33}
+              className="md:w-30"
+            />
+          </Link>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+                <Link
+                  key={link.href}
+                  href={link.type === "anchor" ? `/${link.href}` : link.href}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+            ))
+            }
           </div>
           <div className="flex items-center gap-3">
             <a
@@ -96,16 +95,15 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-gray-100 px-4 pb-4 text-center">
           <div className="flex flex-col gap-1 pt-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="text-gray-600 hover:text-gray-900 text-sm py-2 px-2 rounded-lg hover:bg-gray-50 transition"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+                <Link
+                  key={link.href}
+                  href={link.type === "anchor" ? `/${link.href}` : link.href}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+            )}
             <a
               href={whatsappUrl}
               target="_blank"

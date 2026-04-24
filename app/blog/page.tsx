@@ -4,7 +4,6 @@ import { useCallback, useState } from 'react';
 import CTA from '@/app/components/ui/CTA';
 import useSWR from 'swr';
 import { BlogResponse } from '@/app/types';
-// import Pagination from '@/components/molecules/Pagination'
 import BlogErrorState from './_components/BlogErrorState';
 import ArticleCardSkeleton from './_components/ArticleCardSkeleton';
 import Card from '@/components/molecules/Card';

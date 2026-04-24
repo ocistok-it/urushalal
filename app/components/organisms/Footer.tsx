@@ -17,29 +17,29 @@ const Footer = () => {
               <h3 className="font-bold text-gray-900 mb-6">Navigasi</h3>
               <ul className="space-y-3 text-gray-600 text-sm">
                 <li>
-                  <a href="#tentang" className="hover:text-gray-900">
+                  <Link href="/#tentang" className="hover:text-gray-900">
                     Tentang Sertifikasi Halal
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#layanan" className="hover:text-gray-900">
+                  <Link href="/#layanan" className="hover:text-gray-900">
                     Layanan
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#industri" className="hover:text-gray-900">
+                  <Link href="/#industri" className="hover:text-gray-900">
                     Industri
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#tahapan" className="hover:text-gray-900">
+                  <Link href="/#tahapan" className="hover:text-gray-900">
                     Tahapan Sertifikasi
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#produk" className="hover:text-gray-900">
+                  <Link href="/#produk" className="hover:text-gray-900">
                     Kategori Produk
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link href="/blog" className="hover:text-gray-900">

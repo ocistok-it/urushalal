@@ -2,7 +2,7 @@
 
 import { use } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import CTA from '@/app/components/ui/CTA';
 import useSWR from 'swr';
 import { ArticleDetailResponse } from '@/app/types';
@@ -25,32 +25,14 @@ interface Props {
   params: Promise<{ handle: string }>;
 }
 
-const Page = ({ params }: Props) => {
-  const { handle } = use(params);
 
-  const { data, isLoading, error } = useSWR<ArticleDetailResponse, ApiError>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/${handle}`);
 
-  const article = data?.data;
-
-  return (
-    <div className="min-h-screen bg-white">
-      <div className="pt-24 md:pt-32 pb-16 px-4 max-w-3xl mx-auto">
-        <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium mb-8 transition-colors">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          Kembali ke Blog
-        </Link>
-
-        {error ? (
-          <BlogErrorState />
-        ) : isLoading || !article ? (
-          <ArticleDetailSkeleton />
-        ) : (
+const Article = ({ article }: { article: ArticleDetailResponse['data'] }) => {
+  return (          
           <article>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">{article.title}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-900 leading-tight mb-4">{article.title}</h1>
 
-            <p className="text-sm text-gray-400 mb-8">
+            <p className="text-sm text-gray-400 mb-8 text-center">
               <span className="text-teal-600 font-medium">{article.author}</span>
               <span className="mx-2">|</span>
               {formatDate(article.created_at)}
@@ -69,10 +51,39 @@ const Page = ({ params }: Props) => {
                 ))}
               </div>
             )}
-
             <div className="prose prose-gray prose-img:rounded-xl prose-a:text-teal-600 hover:prose-a:text-teal-700 max-w-none" dangerouslySetInnerHTML={{ __html: article.body_html }} />
-          </article>
-        )}
+          </article>)
+}
+
+const Page = ({ params }: Props) => {
+  const { handle } = use(params);
+
+  const { data, isLoading, error } = useSWR<ArticleDetailResponse, ApiError>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/${handle}`);
+
+  const article = data?.data;
+
+
+  let content: React.ReactNode;
+
+  if (isLoading) {
+    content = <ArticleDetailSkeleton />;
+  }
+    else if (error) {
+    content = <BlogErrorState />; 
+  } else {
+content = <Article article={article!} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      <div className="pt-24 md:pt-32 pb-16 px-4 max-w-4xl mx-auto">
+        {/* <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm text-teal-600 hover:text-teal-700 font-medium mb-8 transition-colors">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Kembali ke Blog
+        </Link> */}
+          {content}
       </div>
 
       {article?.recomended?.length && (

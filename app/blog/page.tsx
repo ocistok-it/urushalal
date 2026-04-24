@@ -12,11 +12,11 @@ import { ApiError } from '@/app/lib/fetcher';
 import Footer from '@/components/organisms/Footer';
 import Pagination from '@/components/molecules/Pagination';
 
-const LIMIT_OPTIONS = [5, 10, 20, 100];
+const LIMIT_OPTIONS = [6, 12, 18, 24, 30];
 
 const Page = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(6);
 
   const { data, isLoading, error } = useSWR<BlogResponse, ApiError>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=${limit}`);
 

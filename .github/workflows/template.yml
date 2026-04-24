@@ -20,6 +20,10 @@ on:
         description: 'Deploymentnya e.g procimart, martkita'
         required: true
         type: string
+      gateway:
+        description: 'Gateway URL e.g procimart, martkita'
+        required: true
+        type: string
       # url_root:
       #   description: 'aswaswasw'
       #   required: true
@@ -61,6 +65,8 @@ jobs:
           no-cache: true
           tags: ${{ inputs.docker_tags }}
           file: ./Dockerfile
+          build-args: |
+            NEXT_PUBLIC_API_BASE_URL=${{ inputs.gateway }}
 
 
       - name: deploy to K8S server

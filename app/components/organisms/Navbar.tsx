@@ -12,7 +12,7 @@ const navLinks = [
   { type: "anchor", href: "#industri", label: "Industri" },
   { type: "anchor", href: "#tahapan", label: "Tahapan Sertifikasi" },
   { type: "anchor", href: "#produk", label: "Kategori Produk" },
-  { type: "page", href: "/blog", label: "Blog" },
+  // { type: "page", href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {

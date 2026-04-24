@@ -53,9 +53,12 @@ const CTA = () => {
                 ))}
               </ul>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                <button className=" cursor-pointer px-6 sm:px-8 py-3 bg-teal-800 text-white rounded-full hover:bg-teal-700 transition font-semibold text-sm sm:text-base">
+                <a                   
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer" className=" cursor-pointer px-6 sm:px-8 py-3 bg-teal-800 text-white rounded-full hover:bg-teal-700 transition font-semibold text-sm sm:text-base">
                   Mulai Proses Sertifikasi Halal
-                </button>
+                </a>
                 <a
                   href={whatsappUrl}
                   target="_blank"

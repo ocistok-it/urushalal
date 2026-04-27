@@ -12,32 +12,31 @@ import { ApiError } from '@/app/lib/fetcher';
 import Footer from '@/components/organisms/Footer';
 import Pagination from '@/components/molecules/Pagination';
 
-const LIMIT_OPTIONS = [6, 12, 18, 24, 30];
-  const getBlogKey = (page: number, limit: number) => `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=${limit}`;
+// const LIMIT_OPTIONS = [6];
+  const getBlogKey = (page: number) => `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=${6}`;
 
 const Page = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(6);
+  // const [limit, setLimit] = useState(6);
 
   const { mutate } = useSWRConfig();
 
 
-  const { data, isLoading, error } = useSWR<BlogResponse, ApiError>(getBlogKey(page, limit));
+  const { data, isLoading, error } = useSWR<BlogResponse, ApiError>(getBlogKey(page));
 
   const articles = data?.data?.articles ?? [];
-  const totalPages = Math.ceil((data?.data?.total_articles ?? 0) / limit);
+  const totalPages = Math.ceil((data?.data?.total_articles ?? 0) / 6);
 
-  const handleLimitChange = useCallback((newLimit: number) => {
-   mutate(getBlogKey(1, newLimit), undefined, { revalidate: false });
-    setLimit(newLimit);
-    setPage(1);
-  }, [mutate]);
+  // const handleLimitChange = useCallback((newLimit: number) => {
+  //  mutate(getBlogKey(1, newLimit), undefined, { revalidate: false });
+  //   setLimit(newLimit);
+  //   setPage(1);
+  // }, [mutate]);
 
   const handlePageChange = useCallback((newPage: number) => {
-    mutate(getBlogKey(newPage, limit), undefined, { revalidate: false });
+    mutate(getBlogKey(newPage), undefined, { revalidate: false });
     setPage(newPage);
-  }, [limit, mutate]);
-
+  }, [mutate]);
 
 
   if (error) {
@@ -78,7 +77,7 @@ const Page = () => {
       </div>
 
       <section className="px-4 max-w-7xl mx-auto pb-16">
-        <div className="flex justify-end items-center gap-2 mb-6">
+        {/* <div className="flex justify-end items-center gap-2 mb-6">
           <span className="text-sm text-gray-500">Tampilkan:</span>
           {LIMIT_OPTIONS.map((opt) => (
             <button
@@ -91,7 +90,7 @@ const Page = () => {
               {opt}
             </button>
           ))}
-        </div>
+        </div> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0">
           {articles.map((article) => (
             <Card

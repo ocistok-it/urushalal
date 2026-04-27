@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import CTA from '@/app/components/ui/CTA';
-import useSWR from 'swr';
+import useSWR, {useSWRConfig} from 'swr';
 import { BlogResponse } from '@/app/types';
 import BlogErrorState from './_components/BlogErrorState';
 import ArticleCardSkeleton from './_components/ArticleCardSkeleton';
@@ -13,26 +13,38 @@ import Footer from '@/components/organisms/Footer';
 import Pagination from '@/components/molecules/Pagination';
 
 const LIMIT_OPTIONS = [6, 12, 18, 24, 30];
+  const getBlogKey = (page: number, limit: number) => `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=${limit}`;
 
 const Page = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
 
-  const { data, isLoading, error, isValidating } = useSWR<BlogResponse, ApiError>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=${limit}`);
+  const { mutate } = useSWRConfig();
+
+
+  const { data, isLoading, error } = useSWR<BlogResponse, ApiError>(getBlogKey(page, limit));
 
   const articles = data?.data?.articles ?? [];
   const totalPages = Math.ceil((data?.data?.total_articles ?? 0) / limit);
 
   const handleLimitChange = useCallback((newLimit: number) => {
+   mutate(getBlogKey(1, newLimit), undefined, { revalidate: false });
     setLimit(newLimit);
     setPage(1);
-  }, []);
+  }, [mutate]);
+
+  const handlePageChange = useCallback((newPage: number) => {
+    mutate(getBlogKey(newPage, limit), undefined, { revalidate: false });
+    setPage(newPage);
+  }, [limit, mutate]);
+
+
 
   if (error) {
     return <BlogErrorState />;
   }
 
-  if (isLoading || isValidating) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-white">
         <div className="pt-24 md:pt-32 pb-12 px-4 max-w-7xl mx-auto">
@@ -104,7 +116,7 @@ const Page = () => {
             />
           ))}
         </div>
-        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+        <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
       </section>
 
       <CTA />

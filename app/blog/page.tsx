@@ -18,7 +18,7 @@ const Page = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
 
-  const { data, isLoading, error } = useSWR<BlogResponse, ApiError>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=${limit}`);
+  const { data, isLoading, error, isValidating } = useSWR<BlogResponse, ApiError>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/pages?page=${page}&limit=${limit}`);
 
   const articles = data?.data?.articles ?? [];
   const totalPages = Math.ceil((data?.data?.total_articles ?? 0) / limit);
@@ -32,7 +32,7 @@ const Page = () => {
     return <BlogErrorState />;
   }
 
-  if (isLoading) {
+  if (isLoading || isValidating) {
     return (
       <div className="min-h-screen bg-white">
         <div className="pt-24 md:pt-32 pb-12 px-4 max-w-7xl mx-auto">

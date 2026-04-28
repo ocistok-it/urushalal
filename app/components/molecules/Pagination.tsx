@@ -12,7 +12,7 @@ const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) => {
       <button
         onClick={() => onPageChange(Math.max(1, page - 1))}
         disabled={page === 1}
-        className="px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        className="px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 cursor-pointer transition-colors"
       >
         Sebelumnya
       </button>
@@ -21,7 +21,7 @@ const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) => {
         <button
           key={p}
           onClick={() => onPageChange(p)}
-          className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
+          className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
             p === page
               ? "bg-teal-600 text-white"
               : "border border-gray-300 text-gray-700 hover:bg-gray-50"
@@ -34,7 +34,7 @@ const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) => {
       <button
         onClick={() => onPageChange(Math.min(totalPages, page + 1))}
         disabled={page === totalPages}
-        className="px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        className="px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 cursor-pointer transition-colors"
       >
         Selanjutnya
       </button>

@@ -41,11 +41,11 @@ const Footer = () => {
                     Kategori Produk
                   </Link>
                 </li>
-                {/* <li>
+                <li>
                   <Link href="/blog" className="hover:text-gray-900">
                     Blog
                   </Link>
-                </li> */}
+                </li>
               </ul>
             </div>
             <div>
